@@ -5,7 +5,7 @@ Login database oracle as DBA run statement:<br/>
     CREATE USER database_mock IDENTIFIED BY itsol_mock#123;<br/>
     GRANT CONNECT, RESOURCE, DBA TO database_mock;<br/>
     GRANT UNLIMITED TABLESPACE TO database_mock;
-<code><br/>
+</code><br/>
 Login database with user name: <code>database_mock</code>, password: <code>itsol_mock#123</code><br/>
 Run statement create table:<br/>
 <code>CREATE TABLE TBL_AUTHORITY(
