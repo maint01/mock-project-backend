@@ -1,5 +1,6 @@
 package com.itsol.train.mock.service.impl;
 
+import com.itsol.train.mock.dao.UserDAO;
 import com.itsol.train.mock.dto.UserDto;
 import com.itsol.train.mock.exception.EmailExistException;
 import com.itsol.train.mock.exception.UsernameExistException;
@@ -33,6 +34,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public void register(UserDto userDto) throws UsernameExistException, EmailExistException {
         log.trace("Service to register user in web site");
@@ -57,5 +61,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthorities() {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByUsername);
+    }
+
+    @Override
+    public List<UserDto> getAllUserNotActive() {
+        log.trace("Service to get all user not active");
+        return userDAO.findAllUserNotActive2();
     }
 }

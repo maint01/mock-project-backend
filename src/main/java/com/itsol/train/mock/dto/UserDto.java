@@ -5,6 +5,7 @@ import com.itsol.train.mock.domain.User;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -31,6 +32,11 @@ public class UserDto {
     private Boolean rememberMe;
 
     private Set<Authority> authorities;
+
+    private String langKey;
+    private String imageUrl;
+    private Date createDate;
+    private Date updateDate;
 
     public UserDto(User user){
         this.id = user.getId();

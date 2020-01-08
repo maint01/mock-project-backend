@@ -5,6 +5,7 @@ import com.itsol.train.mock.dto.UserDto;
 import com.itsol.train.mock.exception.EmailExistException;
 import com.itsol.train.mock.exception.UsernameExistException;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -20,4 +21,10 @@ public interface UserService {
      * @return Optional<User>
      */
     Optional<User> getUserWithAuthorities();
+
+    /**
+     *
+     * @return List<UserDto>
+     */
+    List<UserDto> getAllUserNotActive();
 }

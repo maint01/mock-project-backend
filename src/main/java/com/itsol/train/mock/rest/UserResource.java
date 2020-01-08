@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserResource {
@@ -42,6 +44,12 @@ public class UserResource {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
+    @GetMapping("/get-user-not-active")
+    public ResponseEntity<List<UserDto>> getUserNotActive(){
+        log.trace("REST to get all user not active");
+        List<UserDto> lstUserNotActive = userService.getAllUserNotActive();
+        return new ResponseEntity<>(lstUserNotActive, HttpStatus.OK);
+    }
     private static class AccountResourceException extends RuntimeException {
         private AccountResourceException(String message) {
             super(message);

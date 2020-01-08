@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
  *
  */
 @Component("userDetailsService")
-public class UserdetailServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
-    private Logger log = LoggerFactory.getLogger(UserdetailServiceImpl.class);
+    private Logger log = LoggerFactory.getLogger(UserDetailServiceImpl.class);
 
     private final UserRepository userRepository;
 
-    public UserdetailServiceImpl(UserRepository userRepository){
+    public UserDetailServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
