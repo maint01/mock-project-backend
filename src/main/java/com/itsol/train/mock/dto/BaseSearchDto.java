@@ -15,7 +15,5 @@ public class BaseSearchDto {
     private long totalRecords;
     private int page;
     List<SortDto> sorts;
-    private String sort;
-    private String orderBy;
     private int pageSize;
 }

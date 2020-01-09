@@ -47,10 +47,11 @@ public class UserResource {
     }
 
     @PostMapping("/get-user-not-active")
-    public ResponseEntity<List<UserDto>> getUserNotActive(@RequestBody UserSearchDto userSearchDto){
+    public ResponseEntity<UserSearchDto> getUserNotActive(@RequestBody UserSearchDto userSearchDto){
         log.trace("REST to get all user not active");
         List<UserDto> lstUserNotActive = userService.getAllUserNotActive(userSearchDto);
-        return new ResponseEntity<>(lstUserNotActive, HttpStatus.OK);
+        userSearchDto.setData(lstUserNotActive);
+        return new ResponseEntity<>(userSearchDto, HttpStatus.OK);
     }
     private static class AccountResourceException extends RuntimeException {
         private AccountResourceException(String message) {
