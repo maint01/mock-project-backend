@@ -10,4 +10,7 @@ public interface UserDAO {
     List<UserDto> findAllUserNotActive1();
 
     List<UserDto> findAllUserNotActive2(UserSearchDto userSearchDto);
+
+    List<UserDto> usingHibernate(UserSearchDto userSearchDto);
+
 }

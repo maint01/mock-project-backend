@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUserNotActive(UserSearchDto userSearchDto) {
         log.trace("Service to get all user not active: {}", userSearchDto);
-        return userDAO.findAllUserNotActive2(userSearchDto);
+//        return userDAO.findAllUserNotActive2(userSearchDto);
+        return userDAO.usingHibernate(userSearchDto);
     }
 }
