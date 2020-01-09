@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 @Component
 public class SqlUtil {
     private static final Logger log = LoggerFactory.getLogger(SqlUtil.class);
-    public final static String SQL_MODULE_USER = "user";
 
     public String getSqlQueryById(String module,
                                          String queryId) {

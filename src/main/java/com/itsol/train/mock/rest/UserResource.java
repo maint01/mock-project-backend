@@ -4,10 +4,12 @@ package com.itsol.train.mock.rest;
 import com.itsol.train.mock.constants.AppConstants;
 import com.itsol.train.mock.dto.ResponseDto;
 import com.itsol.train.mock.dto.UserDto;
+import com.itsol.train.mock.dto.UserSearchDto;
 import com.itsol.train.mock.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +46,10 @@ public class UserResource {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    @GetMapping("/get-user-not-active")
-    public ResponseEntity<List<UserDto>> getUserNotActive(){
+    @PostMapping("/get-user-not-active")
+    public ResponseEntity<List<UserDto>> getUserNotActive(@RequestBody UserSearchDto userSearchDto){
         log.trace("REST to get all user not active");
-        List<UserDto> lstUserNotActive = userService.getAllUserNotActive();
+        List<UserDto> lstUserNotActive = userService.getAllUserNotActive(userSearchDto);
         return new ResponseEntity<>(lstUserNotActive, HttpStatus.OK);
     }
     private static class AccountResourceException extends RuntimeException {

@@ -2,6 +2,7 @@ package com.itsol.train.mock.service.impl;
 
 import com.itsol.train.mock.dao.UserDAO;
 import com.itsol.train.mock.dto.UserDto;
+import com.itsol.train.mock.dto.UserSearchDto;
 import com.itsol.train.mock.exception.EmailExistException;
 import com.itsol.train.mock.exception.UsernameExistException;
 import com.itsol.train.mock.security.AuthoritiesConstants;
@@ -14,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,8 +66,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUserNotActive() {
-        log.trace("Service to get all user not active");
-        return userDAO.findAllUserNotActive2();
+    public List<UserDto> getAllUserNotActive(UserSearchDto userSearchDto) {
+        log.trace("Service to get all user not active: {}", userSearchDto);
+        return userDAO.findAllUserNotActive2(userSearchDto);
     }
 }
