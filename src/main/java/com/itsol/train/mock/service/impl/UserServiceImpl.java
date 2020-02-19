@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -70,5 +71,9 @@ public class UserServiceImpl implements UserService {
         log.trace("Service to get all user not active: {}", userSearchDto);
 //        return userDAO.findAllUserNotActive2(userSearchDto);
         return userDAO.usingHibernate(userSearchDto);
+    }
+
+    public List<UserDto> getAllUser(){
+        return userRepository.findAll().stream().map(user->modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 }

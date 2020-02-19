@@ -29,4 +29,6 @@ public interface UserService {
      * @return List<UserDto>
      */
     List<UserDto> getAllUserNotActive(UserSearchDto userSearchDto);
+
+    List<UserDto> getAllUser();
 }

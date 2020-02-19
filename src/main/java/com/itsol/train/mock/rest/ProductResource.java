@@ -21,13 +21,13 @@ public class ProductResource {
         this.productService = productService;
     }
 
-    @GetMapping("/get-all")
+    @GetMapping
     public ResponseEntity<List<ProductDto>> getAllProduct(){
         log.trace("REST to request get all product.");
         return new ResponseEntity<>(productService.getAllProduct(), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Void> saveProduct(@RequestBody ProductDto productDto){
         log.trace("REST to request create product: {}", productDto);
         try{
@@ -39,7 +39,7 @@ public class ProductResource {
         }
     }
 
-    @GetMapping("/find-one/{productId}")
+    @GetMapping("/{productId}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId){
         log.trace("REST to request get product: {}", productId);
         ProductDto productDto = productService.getProduct(productId);
@@ -50,7 +50,7 @@ public class ProductResource {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Void> updateProduct(@RequestBody ProductDto productDto){
         log.trace("REST to request update product: {}", productDto);
         try{
@@ -62,7 +62,7 @@ public class ProductResource {
         }
     }
 
-    @DeleteMapping("/delete/{productId}")
+    @DeleteMapping("/{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long productId){
         log.trace("REST to request delete product: {}", productId);
         try{

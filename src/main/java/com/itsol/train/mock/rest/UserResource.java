@@ -6,6 +6,7 @@ import com.itsol.train.mock.dto.ResponseDto;
 import com.itsol.train.mock.dto.UserDto;
 import com.itsol.train.mock.dto.UserSearchDto;
 import com.itsol.train.mock.service.UserService;
+import oracle.jdbc.proxy.annotation.Post;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+    @PostMapping("/find-all")
+    public ResponseEntity<List<UserDto>> getAllUser(){
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<ResponseDto> register(@RequestBody UserDto userDto){
         log.trace("REST request to register user website: {}", userDto);
@@ -43,6 +49,7 @@ public class UserResource {
         UserDto userDto = userService.getUserWithAuthorities()
                 .map(UserDto::new)
                 .orElseThrow(() -> new AccountResourceException("User could not be found"));
+        userDto.setPassword(null);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
