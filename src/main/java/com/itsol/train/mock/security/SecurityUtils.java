@@ -1,5 +1,7 @@
 package com.itsol.train.mock.security;
 
+import com.itsol.train.mock.domain.User;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -83,5 +85,20 @@ public final class SecurityUtils {
                     .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(authority));
             })
             .orElse(false);
+    }
+
+    /**
+     * Get the login of the current userId.
+     *
+     * @return the login of the current userId.
+     */
+    public static Long getCurrentUserIdLogin() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        if (authentication.getDetails() instanceof User) {
+            User springSecurityUser = (User) authentication.getDetails();
+            return springSecurityUser.getId();
+        }
+        return null;
     }
 }
